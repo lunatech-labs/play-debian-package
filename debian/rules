@@ -28,7 +28,7 @@ override_dh_auto_clean:
 	if [ -d ${DEB_PATH} ]; then rm -rf ${DEB_PATH}; fi		
 
 override_dh_auto_install: 
-	install -d $(DEB_PATH)$(INSTALL_PATH) $(DEB_PATH)$(INSTALL_PATH)/modules $(DEB_PATH)$(ETC_PATH) $(DEB_PATH)$(DOC_PATH)
+	install -d $(DEB_PATH)$(INSTALL_PATH) $(DEB_PATH)$(SBIN_PATH) $(DEB_PATH)$(INSTALL_PATH)/modules $(DEB_PATH)$(ETC_PATH) $(DEB_PATH)$(DOC_PATH)
 	rsync -r --exclude play/play-${VERSION}/framework/classes play/play-${VERSION}/framework play/play-${VERSION}/play play/play-${VERSION}/resources play/play-${VERSION}/support play/play-${VERSION}/samples-and-tests $(DEB_PATH)$(INSTALL_PATH)
 	for m in crud docviewer grizzly secure testrunner; \
 	 do rsync -r --exclude play/play-${VERSION}/tmp play/play-${VERSION}/modules/$$m $(DEB_PATH)$(INSTALL_PATH)/modules ;\
