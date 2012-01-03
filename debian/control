@@ -1,0 +1,12 @@
+Source: play
+Section: java
+Priority: extra
+Maintainer: Nicolas Leroux <nicolas@lunatech.com>
+Build-Depends: debhelper (>= 8.0.0)
+Standards-Version: 1.2.4
+Homepage: http://www.playframework.org
+
+Package: play
+Architecture: all
+Depends: ${misc:Depends}, python (>= 2.5), java-runtime
+Description: The Play framework makes it easier to build Web applications with Java and Scala

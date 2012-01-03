@@ -1,0 +1,10 @@
+#!/bin/sh
+
+set -e
+
+VERSION=`cat debian/playversion`
+
+case "$1" in
+configure)
+	update-alternatives --install /usr/bin/play play /usr/share/play/${VERSION}/play 1221000021
+esac

@@ -1,0 +1,40 @@
+#!/usr/bin/make -f
+#-*- makefile -*-
+# Made with the aid of dh_make, by Craig Small
+# Sample debian/rules that uses debhelper. GNU copyright 1997 by Joey Hess.
+# Some lines taken from debmake, by Christoph Lameter.
+
+# Uncomment this to turn on verbose mode.
+export DH_VERBOSE=1
+
+VERSION=`cat debian/playversion`
+
+DEB_PATH=debian/play
+INSTALL_PATH=/usr/share/play/$(VERSION)
+ETC_PATH=/etc/play/$(VERSION)
+DOC_PATH=/usr/share/doc/play/$(VERSION)
+SBIN_PATH=/usr/sbin
+%:
+	dh  $@
+
+override_dh_auto_build: 
+	if [ ! -f play-${VERSION}.zip ]; then curl -o play-${VERSION}.zip http://download.playframework.org/releases/play-${VERSION}.zip;fi
+	unzip play-${VERSION}.zip -d play
+
+
+override_dh_auto_clean: 
+	if [ -f play-${VERSION}.zip ]; then rm play-${VERSION}.zip; fi
+	if [ -d play ]; then rm -rf play; fi 
+	if [ -d ${DEB_PATH} ]; then rm -rf ${DEB_PATH}; fi		
+
+override_dh_auto_install: 
+	install -d $(DEB_PATH)$(INSTALL_PATH) $(DEB_PATH)$(INSTALL_PATH)/modules $(DEB_PATH)$(ETC_PATH) $(DEB_PATH)$(DOC_PATH)
+	rsync -r --exclude play/play-${VERSION}/framework/classes play/play-${VERSION}/framework play/play-${VERSION}/play play/play-${VERSION}/resources play/play-${VERSION}/support play/play-${VERSION}/samples-and-tests $(DEB_PATH)$(INSTALL_PATH)
+	for m in crud docviewer grizzly secure testrunner; \
+	 do rsync -r --exclude play/play-${VERSION}/tmp play/play-${VERSION}/modules/$$m $(DEB_PATH)$(INSTALL_PATH)/modules ;\
+	done
+	cp -r play/play-${VERSION}/documentation $(DEB_PATH)$(DOC_PATH)
+	ln -s $(DOC_PATH)/documentation $(DEB_PATH)$(INSTALL_PATH)
+	cp -r debian/id $(DEB_PATH)$(ETC_PATH)
+	ln -s $(ETC_PATH) $(DEB_PATH)$(INSTALL_PATH)/etc
+	cp debian/update-play-alternatives $(SBIN_PATH)/

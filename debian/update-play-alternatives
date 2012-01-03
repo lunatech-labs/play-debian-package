@@ -1,0 +1,59 @@
+#!/bin/sh
+
+prog=$(basename $0)
+
+usage()
+{
+    rv=$1
+    cat >&2 <<-EOF
+	usage: $prog -l|--list 
+	             -s|--set <play-version>
+	EOF
+    exit $rv
+}
+
+action=
+
+while [ "$#" -gt 0 ]; do
+    case "$1" in
+      -l|--list)
+	[ -z "$action" ] || usage 1
+	action=list;;
+      -s|--set)
+	[ -z "$action" ] || usage 1
+	action=set
+	shift
+	[ "$#" -gt 0 ] || usage 1
+	jname=$1
+	;;
+      -h|-?|--help)
+	usage 0;;
+      *)
+	break;;
+    esac
+    shift
+done
+
+[ "$#" -eq 0 ] || usage 1
+[ -n "$action" ] || usage 1
+
+top=/usr/share/play/
+
+vecho()
+{
+    [ -z "$verbose" ]  || echo >&2 "$@"
+}
+
+do_list() {
+   cd $top
+   for f in *
+   do
+      echo ${f}
+   done
+}
+
+do_set() {
+  update-alternatives --install /usr/bin/play play /usr/share/play/$1/play 1221000021
+}
+
+do_$action
