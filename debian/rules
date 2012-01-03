@@ -37,4 +37,4 @@ override_dh_auto_install:
 	ln -s $(DOC_PATH)/documentation $(DEB_PATH)$(INSTALL_PATH)
 	cp -r debian/id $(DEB_PATH)$(ETC_PATH)
 	ln -s $(ETC_PATH) $(DEB_PATH)$(INSTALL_PATH)/etc
-	cp debian/update-play-alternatives $(SBIN_PATH)/
+	cp debian/update-play-alternatives $(DEB_PATH)$(SBIN_PATH)/
