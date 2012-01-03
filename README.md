@@ -18,7 +18,7 @@ Once this is done, run the command `dch -i' and input the changes to your packag
 
 ## Building the debian package
 
-To build the package simply run `fakeroot dpkg-buildpackage -b` from the project root directory. The scripts will download the right play distribution.
+To build the package simply run `fakeroot dpkg-buildpackage -b` from this project root directory. The scripts will download the right play distribution.
 
 ## Switching to a previous play version
 
