@@ -4,8 +4,8 @@ These scripts allow you to build a debian packages from the official play distri
 
 ## Download the latest debian package
 
-If you don't want to buold the package yourself, you can download the latest [play 1.2.4 debian package][https://github.com/downloads/lunatech-labs/play-debian-package/play_1.2.4-1_all.deb]. 
-You can also [browse from previous versions][https://github.com/lunatech-labs/play-debian-package/downloads].
+If you don't want to buold the package yourself, you can download the latest [play 1.2.4 debian package](https://github.com/downloads/lunatech-labs/play-debian-package/play_1.2.4-1_all.deb). 
+You can also [browse from previous versions](https://github.com/lunatech-labs/play-debian-package/downloads).
 
 ## Pre-requisite
 
