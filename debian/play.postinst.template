@@ -2,7 +2,7 @@
 
 set -e
 
-VERSION=`cat debian/playversion`
+VERSION=_VERSION_
 
 case "$1" in
 configure)

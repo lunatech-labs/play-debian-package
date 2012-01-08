@@ -1,7 +1,7 @@
 #!/bin/sh -e
 
 
-VERSION=`cat debian/playversion`
+VERSION=_VERSION_
 
 if [ "$1" = "remove" ] || [ "$1" = "deconfigure" ]; then
 	update-alternatives --remove play /usr/share/play/$VERSION/play
