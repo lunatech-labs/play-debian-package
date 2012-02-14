@@ -13,17 +13,21 @@ You need a debian or ubuntu system. On the system, the following packages need t
 
  * build-essential 
  * dh-make
+ * devscripts
  * fakeroot
  * curl
 
 ## Play version configuration
 
-Building a package is easy. Simply edit the file debian/playversion and indicate the right version number (i.e. 1.2.4). You also need to edit the file debian/control and fill in the right version number for the Standard-Version field.
-Once this is done, run the command `dch -i' and input the changes to your package.
+Building a package is easy. Simply:
+
+1. edit the file debian/playversion and indicate the right version number (i.e. 1.2.4). 
+1. edit the file debian/control and fill in the right version number for the Standard-Version field.
+1. run the command `dch -i' and log the changes to your package.
 
 ## Building the debian package
 
-To build the package simply run `fakeroot dpkg-buildpackage -b` from this project root directory. The scripts will download the right play distribution.
+To build the package simply, `fakeroot dpkg-buildpackage -b` from this project root directory. The scripts will download the correct play distribution.
 
 ## Switching to a previous play version
 
