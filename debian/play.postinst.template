@@ -4,8 +4,6 @@ set -e
 
 VERSION=_VERSION_
 
-chown playapps:playapps /usr/share/play/${VERSION}/samples-and-tests
-
 case "$1" in
 configure)
 	update-alternatives --install /usr/bin/play play /usr/share/play/${VERSION}/play 1221000021
